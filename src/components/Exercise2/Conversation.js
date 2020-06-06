@@ -2,10 +2,21 @@ import React, { Component } from 'react';
 
 class Conversation extends Component {
   //should recieve the prop "convo"
+  arry(){
+  let conversations=this.props.conversations
+  let Name= this.props.displayConversation
+  let index=conversations.findIndex(c=>c.with==Name)
+  let arry = conversations[index]
+  return arry
+  }
+  goBack=()=>{
+   this.props.goBack() 
+  }
   render() {
     return (
       <div >
-        {/* should render an array of messages, 
+        <button className="Back" onClick={this.goBack}>Back</button>
+        {this.arry().convo.map(c=><div><span className="sender">{c.sender=="self"?"Me":this.arry().with}</span>: {c.text}</div>)}{/* should render an array of messages, 
         with each message in a separate div */}
 
         {/* You should wrap the sender in span with the class "sender" */}

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-
+import List from './List'
+import Conversation from './Conversation'
 class Exercise2 extends Component {
   constructor() {
     super()
@@ -33,12 +34,29 @@ class Exercise2 extends Component {
       ]
     }
   }
+  
+  goBack=()=>{
+    let displayConv =null
+    let newConversations=[...this.state.conversations]
+    this.setState({
+      displayConversation:displayConv,
+      conversations:newConversations
+     })
+  }
+  
+  displayConvo=(Name)=>{
+   let displayConv=Name
+   this.setState({
+    displayConversation:displayConv,
+    
+   })
+  }
 
   render() {
     return (
       <div >
-        {/* If displayConverastion is null - 
-    App should render List, otherwise it should display Conversation */}
+        {this.state.displayConversation?<Conversation displayConversation={this.state.displayConversation}  goBack={this.goBack} conversations={this.state.conversations} /> 
+        :< List list={this.state.conversations} displayConvo={this.displayConvo}/>}
       </div>
     );
   }
